@@ -1,0 +1,7 @@
+apply plugin: 'application'
+
+dependencies {
+    compile project(':$project_core_module')
+}
+
+mainClassName = '${project_package_name}.Main'

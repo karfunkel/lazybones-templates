@@ -1,0 +1,47 @@
+/*
+ * Copyright 2016 the original author or authors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+apply plugin: 'idea'
+
+buildscript {
+    repositories {
+	jcenter()
+        maven { url "http://dl.bintray.com/pledbrook/plugins" }
+    }
+
+    dependencies {
+        classpath "uk.co.cacoethes:lazybones-gradle:1.2.4"
+	classpath 'com.github.ben-manes:gradle-versions-plugin:0.11.3'
+    }
+}
+
+apply plugin: "uk.co.cacoethes.lazybones-templates"
+apply plugin: 'com.github.ben-manes.versions'
+
+if (!project.hasProperty('bintrayUsername')) ext.bintrayUsername = ''
+if (!project.hasProperty('bintrayApiKey')) ext.bintrayApiKey = ''
+
+// gradle.properties:
+//     bintrayUsername=dilbert
+//     bintrayApiKey=kdshfiu2htr082hg0h2ghkhsdafkh
+lazybones {
+    repositoryName = "karfunkel/lazybones-templates"
+    repositoryUsername = project.bintrayUsername
+    repositoryApiKey = project.bintrayApiKey
+    packageExclude "**/*~", "**/.gitignore"
+    licenses = ["Apache-2.0"]
+    vcsUrl = "https://github.com/karfunkel/lazybones/tree/master/lazybones-templates"
+}

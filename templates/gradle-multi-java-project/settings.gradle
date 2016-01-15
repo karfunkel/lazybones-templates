@@ -1,0 +1,4 @@
+rootProject.name = $project_name
+include '$project_core_module'
+include '$project_sub_module'
+
