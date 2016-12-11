@@ -24,7 +24,7 @@ def packageName = props.project_package_name.replaceAll(/\./, '/')
 processTemplates 'Main.groovy', props
 processTemplates 'MainSpec.groovy', props
 
-new File(projectDir, "Main.groovy").renameTo new File(projectDir, "application/src/main/groovy/$packageName/Main.groovy")
-new File(projectDir, "MainSpec.groovy").renameTo new File(projectDir, "application/src/test/groovy/$packageName/MainSpec.groovy")
+new File(projectDir, "Main.groovy").renameTo new File(projectDir, "src/main/groovy/$packageName/Main.groovy")
+new File(projectDir, "MainSpec.groovy").renameTo new File(projectDir, "src/test/groovy/$packageName/MainSpec.groovy")
 
 
