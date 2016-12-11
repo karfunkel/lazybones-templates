@@ -14,9 +14,11 @@ props.project_bintray_repo = ask("Define value for 'bintray repo' [maven]: ", 'm
 props.project_bintray_org = ask("Define value for 'bintray org' [$username]: ", username, 'bintray_org')
 props.project_core_module = ask("Define name for the core module [core]: ", 'core', 'core_module')
 props.project_sub_module = ask("Define name for the sub module [application]: ", 'application', 'sub_module')
-props.project_package_name = ask("Define package name [com.my.${props.project_name.toLowerCase()}]: ", "com.my.${props.project_name.toLowerCase()}", 'package_name')
+props.project_package_name = ask("Define package name [${props.project_group}]: ", "${props.project_group}", 'package_name')
 
 processTemplates '**/gradle.properties', props
+processTemplates 'core/build.gradle', props
+processTemplates 'application/build.gradle', props
 processTemplates 'settings.gradle', props
 
 def packageName = props.project_package_name.replaceAll(/\./, '/')
@@ -36,11 +38,12 @@ def packageName = props.project_package_name.replaceAll(/\./, '/')
 }
 
 processTemplates 'Main.groovy', props
+processTemplates 'MainSpec.groovy', props
 
 new File(projectDir, "Main.groovy").renameTo new File(projectDir, "application/src/main/groovy/$packageName/Main.groovy")
 new File(projectDir, "MainSpec.groovy").renameTo new File(projectDir, "application/src/test/groovy/$packageName/MainSpec.groovy")
 
-new File(projectDir, 'core').renameTo(File(projectDir, props.project_core_module))
-new File(projectDir, 'application').renameTo(File(projectDir, props.project_sub_module))
+new File(projectDir, 'core').renameTo(new File(projectDir, props.project_core_module))
+new File(projectDir, 'application').renameTo(new File(projectDir, props.project_sub_module))
 
 

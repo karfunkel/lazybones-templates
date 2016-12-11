@@ -1,0 +1,17 @@
+.root {
+    -fx-font: 80pt sanserif;
+    -fx-background-color: black;
+}
+
+#logo {
+    -fx-padding: 60px;
+}
+
+#groovy {
+    -fx-fill: linear-gradient(to bottom, PALEGREEN, SEAGREEN);
+}
+
+#fx {
+    -fx-fill: linear-gradient(to bottom, CYAN, DODGERBLUE);
+    -fx-effect: dropshadow(gaussian, DODGERBLUE, 25.0, 0.25, 0, 0);
+}

@@ -43,5 +43,5 @@ lazybones {
     repositoryApiKey = project.bintrayApiKey
     packageExclude "**/*~", "**/.gitignore"
     licenses = ["Apache-2.0"]
-    vcsUrl = "https://github.com/karfunkel/lazybones/tree/master/lazybones-templates"
+    vcsUrl = "https://github.com/karfunkel/lazybones-templates"
 }

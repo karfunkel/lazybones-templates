@@ -6,6 +6,5 @@ out
 *.iws
 *.ipr
 .idea
+.lazybones
 .DS_Store
-.gradletasknamecache
-groovyTest1
