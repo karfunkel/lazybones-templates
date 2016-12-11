@@ -15,9 +15,6 @@ props.project_bintray_org = ask("Define value for 'bintray org' [$username]: ", 
 props.project_package_name = ask("Define package name [${props.project_group}]: ", "${props.project_group}", 'package_name')
 
 processTemplates '**/gradle.properties', props
-processTemplates '**/build.gradle', props
-processTemplates '', props
-processTemplates '', props
 
 def packageName = props.project_package_name.replaceAll(/\./, '/')
 ['src/main/groovy', 'src/test/groovy'].each { base ->
