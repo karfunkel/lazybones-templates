@@ -1,0 +1,15 @@
+target
+out
+*~
+.gradle
+*.iml
+*.ipr
+*.iws
+.idea
+.*.swp
+*.class
+/bin
+user.gradle
+/.settings
+/.externalToolBuilders/
+.gradletasknamecache

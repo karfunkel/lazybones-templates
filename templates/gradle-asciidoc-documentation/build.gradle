@@ -1,0 +1,62 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'org.asciidoctor:asciidoctor-gradle-plugin:1.5.3'
+        classpath 'com.github.jruby-gradle:jruby-gradle-plugin:1.3.3'
+        classpath 'org.ysb33r.gradle:vfs-gradle-plugin:1.0'
+        classpath 'org.asciidoctor:asciidoctorj-pdf:1.5.0-alpha.11'
+        classpath 'com.github.ben-manes:gradle-versions-plugin:0.13.0'
+        classpath 'com.github.allati.asciidoctor.monotree:asciidoctor-extension-monotree:0.0.1'
+    }
+}
+           
+apply plugin: 'com.github.jruby-gradle.base'
+apply plugin: 'org.ysb33r.vfs'
+apply plugin: 'org.asciidoctor.convert'
+apply plugin: 'com.github.ben-manes.versions'
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    gems 'rubygems:asciidoctor-diagram:1.5.4'
+    gems 'rubygems:slim:3.0.7'
+    gems 'rubygems:thread_safe:0.3.5'
+}
+
+asciidoctor {
+    options doctype: 'book'
+
+    backends = ['html5', 'pdf']
+
+    dependsOn jrubyPrepare
+    gemPath = jrubyPrepare.outputDir
+    requires = ['asciidoctor-diagram']
+
+    attributes 'source-highlighter': 'coderay',
+            'coderay-linenums-mode': 'table',
+            'imagesdir': './images',
+            toc: 'left',
+            icon: 'font',
+            linkattrs: true,
+            encoding: 'utf-8',
+            now: new Date().format('dd.MM.yyyy'),
+            'pdf-stylesdir': './theme',
+            'pdf-fontsdir': './fonts',
+            'pdf-style': 'my',
+            'pagenums': true
+
+    sources {
+        include 'Main.adoc'
+    }
+
+    resources {
+        from(sourceDir) {
+            include 'images/**'
+        }
+    }
+}

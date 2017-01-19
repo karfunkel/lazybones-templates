@@ -1,0 +1,10 @@
+= $project_name
+:toclevels: 3
+:numbered:
+:sectnumlevels: 6
+:experimental:
+:chapter-label:
+
+== Chapter 1
+
+=== SubChapter 1
